@@ -1,0 +1,160 @@
+
+:root {
+  --primary: #1f1fff;
+  --secondary: #f73d3d;
+  --dark: #0f0f0f;
+  --light: #ffffff;
+  --bg: #f2f2f2;
+  --card-bg: #ffffff;
+  --text: #1a1a1a;
+  --accent: #00b7ff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--light);
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+nav {
+  margin-top: 0.5rem;
+}
+
+nav a {
+  color: var(--light);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.3rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+select, button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  background-color: var(--light);
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+footer {
+  background-color: var(--primary);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+#team-live,
+#team-history,
+#team-standings {
+  margin-bottom: 2rem;
+}
+
+#team-live p,
+#team-standings p,
+#team-history p {
+  margin: 0.3rem 0;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181818;
+    color: #f5f5f5;
+}
+
+header.dark-mode {
+    background-color: #333;
+    color: #f5f5f5;
+}
+
+nav a.dark-mode {
+    color: #f5f5f5;
+}
+
+footer.dark-mode {
+    background-color: #333;
+    color: #f5f5f5;
+}
+
+.card.dark-mode {
+    background-color: #282828;
+    color: #f5f5f5;
+}
+
+button.dark-mode {
+    border-color: #f5f5f5;
+    background-color: #333;
+    color: #f5f5f5;
+}
+
+button.dark-mode:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+select.dark-mode {
+    border-color: #f5f5f5;
+    background-color: #333;
+    color: #f5f5f5;
+}
+
+#team-live.dark-mode,
+#team-history.dark-mode,
+#team-standings.dark-mode {
+    color: #f5f5f5;
+}

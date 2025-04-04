@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Booking</title>
+    <style>
+        /* Updated CSS for Oval Seating Layout */
+        #seat-map {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: 350px;
+            margin: 0 auto;
+            position: relative;
+            background-color: green;
+            border-radius: 50%;
+        }
+
+        .seat-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .seat {
+            background-color: #d9d9d9;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .seat.selected {
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        .seat.available {
+            background-color: #32cd32;
+        }
+
+        .seat.vip {
+            background-color: #ff6347;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Seat Booking</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="fantasy.html">Fantasy</a>
+            <a href="team-picker.html">Choose Team</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Select Your Seats</h2>
+            <div id="seat-map">
+                <div class="seat-row">
+                    <button class="seat available" id="seat1" data-price="100">1</button>
+                    <button class="seat available" id="seat2" data-price="100">2</button>
+                    <button class="seat available" id="seat3" data-price="100">3</button>
+                    <button class="seat available" id="seat4" data-price="100">4</button>
+                    <button class="seat available" id="seat5" data-price="100">5</button>
+                </div>
+                <div class="seat-row">
+                    <button class="seat available" id="seat6" data-price="50">6</button>
+                    <button class="seat available" id="seat7" data-price="50">7</button>
+                    <button class="seat available" id="seat8" data-price="50">8</button>
+                    <button class="seat available" id="seat9" data-price="50">9</button>
+                    <button class="seat available" id="seat10" data-price="50">10</button>
+                </div>
+                <div class="seat-row">
+                    <button class="seat available" id="seat11" data-price="30">11</button>
+                    <button class="seat available" id="seat12" data-price="30">12</button>
+                    <button class="seat available" id="seat13" data-price="30">13</button>
+                    <button class="seat available" id="seat14" data-price="30">14</button>
+                    <button class="seat available" id="seat15" data-price="30">15</button>
+                </div>
+                <!-- More rows can be added to make a full 100 seats -->
+            </div>
+        </section>
+
+        <section>
+            <h2>Booking Form</h2>
+            <form id="booking-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="seats">Selected Seats:</label>
+                <input type="text" id="seats" name="seats" readonly>
+
+                <label for="total">Total Price:</label>
+                <input type="text" id="total" name="total" readonly>
+
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </section>
+
+        <section id="confirmation" style="display: none;">
+            <h2>Booking Confirmation</h2>
+            <p>Your booking has been confirmed for the following seats:</p>
+            <p id="confirmation-seats"></p>
+            <p>Total Price: <span id="confirmation-price"></span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Football Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const seats = document.querySelectorAll('.seat');
+        let selectedSeats = [];
+        let totalPrice = 0;
+
+        seats.forEach(seat => {
+            seat.addEventListener('click', () => {
+                const seatId = seat.id;
+                const seatPrice = seat.dataset.price;
+
+                if (seat.classList.contains('available')) {
+                    seat.classList.remove('available');
+                    seat.classList.add('selected');
+                    selectedSeats.push(seatId);
+                    totalPrice += seatPrice;
+                } else if (seat.classList.contains('selected')) {
+                    seat.classList.remove('selected');
+                    seat.classList.add('available');
+                    selectedSeats = selectedSeats.filter(id => id !== seatId);
+                    totalPrice -= seatPrice;
+                }
+
+                document.getElementById('seats').value = selectedSeats.join(', ');
+                document.getElementById('total').value = `$${totalPrice}`;
+            });
+        });
+
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (selectedSeats.length > 0) {
+                document.getElementById('confirmation-seats').textContent = selectedSeats.join(', ');
+                document.getElementById('confirmation-price').textContent = `$${totalPrice}`;
+                document.getElementById('confirmation').style.display = 'block';
+            } else {
+                alert('Please select at least one seat.');
+            }
+        });
+    </script>
+</body>
+</html>
